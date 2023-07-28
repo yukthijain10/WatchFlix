@@ -49,6 +49,29 @@
                     android:textStyle="bold" />
             </FrameLayout>
 
+            <FrameLayout
+                android:id="@+id/playbutton"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:elevation="2dp"
+                app:layout_constraintBottom_toBottomOf="@+id/cardView2"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.919"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/cardView2"
+                app:layout_constraintVertical_bias="0.0">
+
+                <androidx.appcompat.widget.AppCompatImageButton
+                    android:id="@+id/playbutton2"
+                    android:layout_width="40dp"
+                    android:layout_height="40dp"
+                    android:background="@drawable/custombutton"
+                    android:src="@drawable/custom_playbutton_bigger"
+                    tools:layout_editor_absoluteX="338dp"
+                    tools:layout_editor_absoluteY="185dp" />
+
+            </FrameLayout>
+
             <androidx.appcompat.widget.AppCompatButton
                 android:id="@+id/button2"
                 android:layout_width="44dp"
