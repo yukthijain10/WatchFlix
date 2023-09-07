@@ -33,7 +33,7 @@ class Movie_Video : Fragment() {
             }
         }
         requireActivity().onBackPressedDispatcher.addCallback(
-            this, onBackPressedCallback
+            viewLifecycleOwner, onBackPressedCallback
         )
 
 

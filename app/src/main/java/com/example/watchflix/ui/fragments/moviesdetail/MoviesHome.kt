@@ -7,6 +7,7 @@ import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
+import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.watchflix.R
@@ -19,6 +20,9 @@ import com.example.watchflix.ui.Adapter.Popularmovies
 import com.example.watchflix.ui.Adapter.Topratedmovies
 import com.example.watchflix.ui.Adapter.Upcomingmovies
 import com.example.watchflix.viewmodel.CustomViewModel
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
+import kotlinx.coroutines.withContext
 
 /**
  * A simple [Fragment] subclass.
@@ -37,41 +41,64 @@ class MoviesHome : Fragment() {
         val view = binding.root
         return view
     }
+
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        val viewmodel:CustomViewModel= ViewModelProvider(this).get(CustomViewModel::class.java)
+        val viewmodel: CustomViewModel = ViewModelProvider(this).get(CustomViewModel::class.java)
         viewmodel.getdataFromPopularApi()
-        viewmodel.popularMovies.observe(viewLifecycleOwner,{
-            PopularRecycler(it)
-        })
+        lifecycleScope.launch(Dispatchers.IO) {
+            viewmodel.popular.collect { popularList ->
+                if (popularList != null) {
+                    withContext(Dispatchers.Main) {
+                        PopularRecycler(popularList)
+                    }
+                }
+            }
+        }
 
-        viewmodel.getdataFromTopRatedApi()
-        viewmodel.topRated.observe(viewLifecycleOwner,{
-            TopratedRecycler(it)
-        })
-        viewmodel.getdataFromUpcomingApi()
-        viewmodel.upcomingMovies.observe(viewLifecycleOwner,{
-            UpcomingRecycler(it)
-        })
+        lifecycleScope.launch(Dispatchers.IO) {
+            viewmodel.getdataFromTopRatedApi()
+            viewmodel.toprated.collect {topratedList->
+                if(topratedList!=null){
+                    withContext(Dispatchers.Main){
+                        TopratedRecycler(topratedList)
+                    }
+                }
+            }
+        }
+        lifecycleScope.launch(Dispatchers.IO) {
+            viewmodel.getdataFromUpcomingApi()
+            viewmodel.upcoming.collect {upcomingList->
+                if(upcomingList!=null){
+                    withContext(Dispatchers.Main){
+                        UpcomingRecycler(upcomingList)
+                    }
+                }
+            }
+
+        }
+    }
+        fun PopularRecycler(results: List<ResultX>?) {
+            binding.recyclerView2.layoutManager =
+                LinearLayoutManager(context, LinearLayoutManager.HORIZONTAL, true)
+            binding.recyclerView2.adapter = results?.let { Popularmovies(it) }
+        }
+
+        fun TopratedRecycler(results: List<Result>) {
+            binding.recyclerView.layoutManager =
+                LinearLayoutManager(context, LinearLayoutManager.HORIZONTAL, true)
+            binding.recyclerView.adapter = results.let { Topratedmovies(it) }
+        }
+
+        fun UpcomingRecycler(results: List<ResultXX>) {
+            binding.recyclerView3.layoutManager =
+                LinearLayoutManager(context, LinearLayoutManager.HORIZONTAL, true)
+            binding.recyclerView3.adapter = results.let { Upcomingmovies(it) }
+
+        }
 
     }
 
-    fun PopularRecycler(results: List<ResultX>){
-        binding.recyclerView2.layoutManager = LinearLayoutManager(context, LinearLayoutManager.HORIZONTAL,true)
-        binding.recyclerView2.adapter=Popularmovies(results)
-    }
-
-    fun TopratedRecycler(results: List<Result>){
-        binding.recyclerView.layoutManager = LinearLayoutManager(context, LinearLayoutManager.HORIZONTAL,true)
-       binding.recyclerView.adapter= Topratedmovies(results)
-    }
-    fun UpcomingRecycler(list: List<ResultXX>){
-        binding.recyclerView3.layoutManager = LinearLayoutManager(context, LinearLayoutManager.HORIZONTAL,true)
-        binding.recyclerView3.adapter=Upcomingmovies(list)
-
-    }
-
-}
 
 
 

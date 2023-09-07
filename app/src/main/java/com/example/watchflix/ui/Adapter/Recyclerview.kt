@@ -138,9 +138,7 @@ class myAdapter2: RecyclerView.Adapter<myAdapter2.ViewHolder2>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder2 {
 
-        val view = LayoutInflater.from(parent.context)
-            .inflate(R.layout.itemarrangements2, parent, false)
-
+        val view = LayoutInflater.from(parent.context).inflate(R.layout.itemarrangements2, parent, false)
         return ViewHolder2(view)
     }
 

@@ -8,6 +8,7 @@ import androidx.activity.OnBackPressedCallback
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
+import androidx.lifecycle.lifecycleScope
 import androidx.navigation.Navigation
 import androidx.navigation.fragment.NavHostFragment
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -19,6 +20,9 @@ import com.example.watchflix.databinding.FragmentMoviesDeatailsBinding
 import com.example.watchflix.network.Data.ResultX
 import com.example.watchflix.ui.Adapter.Popularmovies
 import com.example.watchflix.viewmodel.CustomViewModel
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
+import kotlinx.coroutines.withContext
 
 
 /**
@@ -41,7 +45,7 @@ class MoviesDetails : Fragment() {
             }
         }
         requireActivity().onBackPressedDispatcher.addCallback(
-            this, onBackPressedCallback
+            viewLifecycleOwner, onBackPressedCallback
         )
 
         binding=DataBindingUtil.inflate(inflater,R.layout.fragment_movies_deatails, container, false)
@@ -52,11 +56,17 @@ class MoviesDetails : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         val viewmodel: CustomViewModel = ViewModelProvider(this).get(CustomViewModel::class.java)
-        viewmodel.getdataFromPopularApi()
-        viewmodel.getdataFromUpcomingApi()
-        viewmodel.popularMovies.observe(viewLifecycleOwner,{
-            PopularRecycler(it)
-        })
+
+        lifecycleScope.launch(Dispatchers.IO) {
+            viewmodel.popular.collect { popularList ->
+                if (popularList != null) {
+                    withContext(Dispatchers.Main) {
+                        PopularRecycler(popularList)
+                    }
+                }
+            }
+        }
+
 
         var imgUrl = "https://image.tmdb.org/t/p/w220_and_h330_face"+ arguments?.getString("poster")
 
