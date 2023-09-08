@@ -13,11 +13,7 @@ import androidx.navigation.fragment.NavHostFragment
 import com.example.watchflix.R
 import com.example.watchflix.databinding.MovieVideoBinding
 
-/**
- * A simple [Fragment] subclass.
- * Use the [Movie_Video.newInstance] factory method to
- * create an instance of this fragment.
- */
+
 class Movie_Video : Fragment() {
     lateinit var binding: MovieVideoBinding
 

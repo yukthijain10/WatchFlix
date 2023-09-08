@@ -1,5 +1,6 @@
 package com.example.watchflix.ui.Adapter
 
+import android.content.ClipData.Item
 import android.os.Bundle
 import com.example.watchflix.R
 
@@ -56,7 +57,7 @@ class Popularmovies(private val results:List<ResultX>): RecyclerView.Adapter<Pop
 
     // return the number of the items in the list
     override fun getItemCount(): Int {
-        return 15
+        return results.size
     }
 
     // Holds the views for adding it to image and text
@@ -90,7 +91,7 @@ class Topratedmovies(private val results:List<Result>): RecyclerView.Adapter<Top
 
     // return the number of the items in the list
     override fun getItemCount(): Int {
-        return 15
+        return results.size
     }
 
     // Holds the views for adding it to image and text
@@ -124,7 +125,7 @@ class Upcomingmovies(private val results:List<ResultXX>): RecyclerView.Adapter<U
 
     // return the number of the items in the list
     override fun getItemCount(): Int {
-        return 15
+        return results.size
     }
 
     // Holds the views for adding it to image and text
@@ -134,30 +135,6 @@ class Upcomingmovies(private val results:List<ResultXX>): RecyclerView.Adapter<U
 
 }
 
-class myAdapter2: RecyclerView.Adapter<myAdapter2.ViewHolder2>() {
-
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder2 {
-
-        val view = LayoutInflater.from(parent.context).inflate(R.layout.itemarrangements2, parent, false)
-        return ViewHolder2(view)
-    }
-
-
-    override fun onBindViewHolder(holder: ViewHolder2, position: Int) {
-//        holder.imgView.setImageResource(R.drawable.yjhd)
-    }
-
-    // return the number of the items in the list
-    override fun getItemCount(): Int {
-        return 15
-    }
-
-    // Holds the views for adding it to image and text
-    class ViewHolder2(ItemView: View) : RecyclerView.ViewHolder(ItemView) {
-        val imgView: ImageView = itemView.findViewById(R.id.imageView3)
-    }
-
-}
 
 
 

@@ -11,15 +11,17 @@ import com.example.watchflix.network.Data.ResultX
 import com.example.watchflix.network.Data.ResultXX
 import com.example.watchflix.network.Data.Toprated
 import com.example.watchflix.network.Data.Upcoming
+import com.example.watchflix.repository.mainrepointerface
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.launch
 import retrofit2.Response
 
-class CustomViewModel : ViewModel() {
+class CustomViewModel(
+    val repository:mainrepointerface
+) : ViewModel() {
 
-    private val apiKey = "56c49c7050604cbba16a4c9c84594633"
     val popular = MutableStateFlow<List<ResultX>?>(null)
     val toprated = MutableStateFlow<List<Result>?>(null)
     val upcoming = MutableStateFlow<List<ResultXX>?>(null)
@@ -39,7 +41,7 @@ class CustomViewModel : ViewModel() {
         get()= popular*/
     fun getdataFromPopularApi() {
         viewModelScope.launch(Dispatchers.IO) {
-            val result = Retrofithelper.getInstance1.getPopular(apiKey)
+            val result = repository.getPopular()
             if (result.isSuccessful) {
                /* val popular_movies: Popular ?= result.body()
                 popular.postValue (popular_movies?.results)*/
@@ -57,30 +59,32 @@ class CustomViewModel : ViewModel() {
 
     fun getdataFromTopRatedApi() {
         viewModelScope.launch(Dispatchers.IO) {
-            val result = Retrofithelper.getInstance1.getTopRated(apiKey)
-           // val topresponse = result.body()
+            val result = repository.getTopRated()
+            // val topresponse = result.body()
             if (result.isSuccessful) {
-                val topresponse= result.body()
-                if(topresponse!=null)
-                toprated.value = topresponse.results
+                val topresponse = result.body()
+                if (topresponse != null) {
+                    toprated.value = topresponse.results
+                }
             }
         }
     }
 
-   // private var upcoming = MutableLiveData<List<com.example.watchflix.network.Data.ResultXX>>()
-   // val upcomingMovies : LiveData<List<ResultXX>>
+        // private var upcoming = MutableLiveData<List<com.example.watchflix.network.Data.ResultXX>>()
+        // val upcomingMovies : LiveData<List<ResultXX>>
         //get()= upcoming
-    fun getdataFromUpcomingApi() {
-        viewModelScope.launch(Dispatchers.IO) {
-            val result = Retrofithelper.getInstance1.getUpComing(apiKey)
-            if (result.isSuccessful) {
+        fun getdataFromUpcomingApi() {
+            viewModelScope.launch(Dispatchers.IO) {
+                val result = repository.getUpComing()
+                if (result.isSuccessful) {
 //                Log.d("Api response",result.body().toString())
-                val upcoming_movies= result.body()
-                if(upcoming_movies!=null)
-                //upcoming.postValue(upcoming_movies?.results)
-                    upcoming.value = upcoming_movies.results
+                    val upcoming_movies = result.body()
+                    if (upcoming_movies != null)
+                    //upcoming.postValue(upcoming_movies?.results)
+                        upcoming.value = upcoming_movies.results
+                }
             }
         }
     }
 
-}
+

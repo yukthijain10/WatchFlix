@@ -18,11 +18,13 @@ import com.bumptech.glide.Glide
 import com.example.watchflix.R
 import com.example.watchflix.databinding.FragmentMoviesDeatailsBinding
 import com.example.watchflix.network.Data.ResultX
+import com.example.watchflix.repository.mainrepointerface
 import com.example.watchflix.ui.Adapter.Popularmovies
 import com.example.watchflix.viewmodel.CustomViewModel
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
+import org.koin.androidx.viewmodel.ext.android.viewModel
 
 
 /**
@@ -33,6 +35,7 @@ import kotlinx.coroutines.withContext
 class MoviesDetails : Fragment() {
 
     lateinit var binding: FragmentMoviesDeatailsBinding
+    private val viewmodel by viewModel<CustomViewModel>()
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -55,7 +58,8 @@ class MoviesDetails : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        val viewmodel: CustomViewModel = ViewModelProvider(this).get(CustomViewModel::class.java)
+
+
 
         lifecycleScope.launch(Dispatchers.IO) {
             viewmodel.popular.collect { popularList ->
@@ -82,7 +86,8 @@ class MoviesDetails : Fragment() {
 
     fun PopularRecycler(results: List<ResultX>){
         binding.detailsrecy.layoutManager = LinearLayoutManager(context, LinearLayoutManager.HORIZONTAL,true)
-        binding.detailsrecy.adapter=Popularmovies(results)
+        val recycleAdapter = results.let{Popularmovies(it)}
+        binding.detailsrecy.adapter = recycleAdapter
     }
 
 }

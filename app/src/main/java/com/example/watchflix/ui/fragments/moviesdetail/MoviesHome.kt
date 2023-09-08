@@ -23,14 +23,12 @@ import com.example.watchflix.viewmodel.CustomViewModel
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
+import org.koin.androidx.viewmodel.ext.android.viewModel
 
-/**
- * A simple [Fragment] subclass.
- * Use the [MoviesHome.newInstance] factory method to
- * create an instance of this fragment.
- */
+
 class MoviesHome : Fragment() {
     lateinit var binding: FragmentMoviesHomeBinding
+    private val viewmodel by viewModel<CustomViewModel>()
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -44,10 +42,10 @@ class MoviesHome : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        val viewmodel: CustomViewModel = ViewModelProvider(this).get(CustomViewModel::class.java)
+
         viewmodel.getdataFromPopularApi()
         lifecycleScope.launch(Dispatchers.IO) {
-            viewmodel.popular.collect { popularList ->
+            viewmodel.popularlist.collect { popularList ->
                 if (popularList != null) {
                     withContext(Dispatchers.Main) {
                         PopularRecycler(popularList)
@@ -57,8 +55,7 @@ class MoviesHome : Fragment() {
         }
 
         lifecycleScope.launch(Dispatchers.IO) {
-            viewmodel.getdataFromTopRatedApi()
-            viewmodel.toprated.collect {topratedList->
+            viewmodel.toplist.collect {topratedList->
                 if(topratedList!=null){
                     withContext(Dispatchers.Main){
                         TopratedRecycler(topratedList)
@@ -67,8 +64,8 @@ class MoviesHome : Fragment() {
             }
         }
         lifecycleScope.launch(Dispatchers.IO) {
-            viewmodel.getdataFromUpcomingApi()
-            viewmodel.upcoming.collect {upcomingList->
+
+            viewmodel.uplist.collect {upcomingList->
                 if(upcomingList!=null){
                     withContext(Dispatchers.Main){
                         UpcomingRecycler(upcomingList)
