@@ -34,17 +34,11 @@ class CustomViewModel(
         getdataFromUpcomingApi()
     }
 
-  //  private var popular = MutableLiveData<List<com.example.watchflix.network.Data.ResultX>>()
 
-   /* val popularlist: StateFlow<List<com.example.watchflix.network.Data.ResultX>?> = popular*/
-   /* val popularMovies : LiveData<List<ResultX>>
-        get()= popular*/
     fun getdataFromPopularApi() {
         viewModelScope.launch(Dispatchers.IO) {
             val result = repository.getPopular()
             if (result.isSuccessful) {
-               /* val popular_movies: Popular ?= result.body()
-                popular.postValue (popular_movies?.results)*/
                 val popresponse= result.body()
                 if(popresponse!=null){
                     popular.value = popresponse.results
@@ -53,9 +47,7 @@ class CustomViewModel(
         }
     }
 
-    /*private var toprated = MutableLiveData<List<com.example.watchflix.network.Data.Result>>()*/
-    /*val topRated : LiveData<List<Result>>
-        get()= toprated*/
+
 
     fun getdataFromTopRatedApi() {
         viewModelScope.launch(Dispatchers.IO) {
@@ -70,17 +62,13 @@ class CustomViewModel(
         }
     }
 
-        // private var upcoming = MutableLiveData<List<com.example.watchflix.network.Data.ResultXX>>()
-        // val upcomingMovies : LiveData<List<ResultXX>>
-        //get()= upcoming
+
         fun getdataFromUpcomingApi() {
             viewModelScope.launch(Dispatchers.IO) {
                 val result = repository.getUpComing()
                 if (result.isSuccessful) {
-//                Log.d("Api response",result.body().toString())
                     val upcoming_movies = result.body()
                     if (upcoming_movies != null)
-                    //upcoming.postValue(upcoming_movies?.results)
                         upcoming.value = upcoming_movies.results
                 }
             }

@@ -16,6 +16,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 
 import com.example.watchflix.R
+import com.example.watchflix.Util.Utilities.imgUrl
 import com.example.watchflix.databinding.FragmentMoviesDeatailsBinding
 import com.example.watchflix.network.Data.ResultX
 import com.example.watchflix.repository.mainrepointerface
@@ -27,11 +28,6 @@ import kotlinx.coroutines.withContext
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
 
-/**
- * A simple [Fragment] subclass.
- * Use the [MoviesDetails.newInstance] factory method to
- * create an instance of this fragment.
- */
 class MoviesDetails : Fragment() {
 
     lateinit var binding: FragmentMoviesDeatailsBinding
@@ -40,7 +36,7 @@ class MoviesDetails : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        // Inflate the layout for this fragment
+
 
         val onBackPressedCallback = object : OnBackPressedCallback(true) {
             override fun handleOnBackPressed() {
@@ -72,7 +68,7 @@ class MoviesDetails : Fragment() {
         }
 
 
-        var imgUrl = "https://image.tmdb.org/t/p/w220_and_h330_face"+ arguments?.getString("poster")
+        var imgUrl = imgUrl+ arguments?.getString("poster")
 
         Glide.with(this).load(imgUrl).into(binding.img)
         binding.tenet.text=arguments?.getString("title")
