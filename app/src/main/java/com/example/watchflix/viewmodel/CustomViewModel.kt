@@ -1,27 +1,21 @@
 package com.example.watchflix.viewmodel
 
-import androidx.lifecycle.LiveData
-import androidx.lifecycle.MutableLiveData
+import android.util.Log
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.example.watchflix.network.Data.Popular
-import com.example.watchflix.network.Retrofithelper
 import com.example.watchflix.network.Data.Result
 import com.example.watchflix.network.Data.ResultX
 import com.example.watchflix.network.Data.ResultXX
-import com.example.watchflix.network.Data.Toprated
-import com.example.watchflix.network.Data.Upcoming
-import com.example.watchflix.repository.mainrepointerface
+import com.example.watchflix.network.repository.mainrepointerface
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.launch
-import retrofit2.Response
+import java.lang.Exception
 
 class CustomViewModel(
-    val repository:mainrepointerface
+    val repository: mainrepointerface
 ) : ViewModel() {
-
     val popular = MutableStateFlow<List<ResultX>?>(null)
     val toprated = MutableStateFlow<List<Result>?>(null)
     val upcoming = MutableStateFlow<List<ResultXX>?>(null)
@@ -33,26 +27,26 @@ class CustomViewModel(
         getdataFromTopRatedApi()
         getdataFromUpcomingApi()
     }
-
-
     fun getdataFromPopularApi() {
         viewModelScope.launch(Dispatchers.IO) {
-            val result = repository.getPopular()
-            if (result.isSuccessful) {
-                val popresponse= result.body()
-                if(popresponse!=null){
-                    popular.value = popresponse.results
+            try{
+                val result = repository.getPopular()
+                Log.d("API check",result.toString())
+                if (result.isSuccessful) {
+                    val popresponse= result.body()
+                    if(popresponse!=null){
+                        popular.value = popresponse.results
+                    }
                 }
+            }
+            catch(e: Exception){
+                Log.d("API check",e.toString())
             }
         }
     }
-
-
-
     fun getdataFromTopRatedApi() {
         viewModelScope.launch(Dispatchers.IO) {
             val result = repository.getTopRated()
-            // val topresponse = result.body()
             if (result.isSuccessful) {
                 val topresponse = result.body()
                 if (topresponse != null) {
@@ -61,9 +55,7 @@ class CustomViewModel(
             }
         }
     }
-
-
-        fun getdataFromUpcomingApi() {
+    fun getdataFromUpcomingApi() {
             viewModelScope.launch(Dispatchers.IO) {
                 val result = repository.getUpComing()
                 if (result.isSuccessful) {

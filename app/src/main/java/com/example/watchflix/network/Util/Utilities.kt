@@ -1,4 +1,4 @@
-package com.example.watchflix.Util
+package com.example.watchflix.network.Util
 
 object Utilities {
     val API_KEY = "56c49c7050604cbba16a4c9c84594633"

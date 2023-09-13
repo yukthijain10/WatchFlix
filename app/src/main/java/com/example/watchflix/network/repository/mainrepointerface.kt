@@ -1,4 +1,4 @@
-package com.example.watchflix.repository
+package com.example.watchflix.network.repository
 
 import com.example.watchflix.network.Data.Popular
 import com.example.watchflix.network.Data.Toprated

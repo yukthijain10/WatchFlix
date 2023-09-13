@@ -25,6 +25,9 @@
         <action
             android:id="@+id/action_moviesDeatails_to_movie_Video"
             app:destination="@id/movie_Video" />
+        <action
+            android:id="@+id/action_moviesDeatails_to_movie_Video2"
+            app:destination="@id/movie_Video" />
     </fragment>
     <fragment
         android:id="@+id/movie_Video"

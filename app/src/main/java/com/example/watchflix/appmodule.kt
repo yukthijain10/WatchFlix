@@ -1,10 +1,10 @@
 package com.example.watchflix
 
 
-import com.example.watchflix.Util.Utilities.baseUrl
+import com.example.watchflix.network.Util.Utilities.baseUrl
 import com.example.watchflix.network.ApiEndpoint
-import com.example.watchflix.repository.mainrepo
-import com.example.watchflix.repository.mainrepointerface
+import com.example.watchflix.network.repository.mainrepo
+import com.example.watchflix.network.repository.mainrepointerface
 import com.example.watchflix.viewmodel.CustomViewModel
 import org.koin.androidx.viewmodel.dsl.viewModel
 import org.koin.dsl.module
