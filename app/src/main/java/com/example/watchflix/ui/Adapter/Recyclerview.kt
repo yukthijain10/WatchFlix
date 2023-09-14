@@ -10,12 +10,12 @@ import android.widget.ImageView
 import androidx.navigation.Navigation
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
-import com.example.watchflix.network.Data.Result
-import com.example.watchflix.network.Data.ResultX
-import com.example.watchflix.network.Data.ResultXX
+import com.example.watchflix.network.Data.topRatedResult
+import com.example.watchflix.network.Data.popularResult
+import com.example.watchflix.network.Data.upComingResult
 
 
-class Popularmovies(private val results:List<ResultX>): RecyclerView.Adapter<Popularmovies.ViewHolder>() {
+class Popularmovies(private val results:List<popularResult>): RecyclerView.Adapter<Popularmovies.ViewHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
 
@@ -61,7 +61,7 @@ class Popularmovies(private val results:List<ResultX>): RecyclerView.Adapter<Pop
 
 }
 
-class Topratedmovies(private val results:List<Result>): RecyclerView.Adapter<Topratedmovies.ViewHolder>() {
+class Topratedmovies(private val results:List<topRatedResult>): RecyclerView.Adapter<Topratedmovies.ViewHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
 
@@ -95,7 +95,7 @@ class Topratedmovies(private val results:List<Result>): RecyclerView.Adapter<Top
 
 }
 
-class Upcomingmovies(private val results:List<ResultXX>): RecyclerView.Adapter<Upcomingmovies.ViewHolder>() {
+class Upcomingmovies(private val results:List<upComingResult>): RecyclerView.Adapter<Upcomingmovies.ViewHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
 

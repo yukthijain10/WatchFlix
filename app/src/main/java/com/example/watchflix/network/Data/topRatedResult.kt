@@ -1,6 +1,6 @@
 package com.example.watchflix.network.Data
 
-data class Result(
+data class topRatedResult(
     val adult: Boolean,
     val backdrop_path: String,
     val genre_ids: List<Int>,

@@ -73,7 +73,6 @@ fun MoviesDetailScreen(
         }
 
         item {
-            // Movie Details Text
             Column(
                 modifier = Modifier
                     .fillMaxWidth()
@@ -90,8 +89,8 @@ fun MoviesDetailScreen(
                             // Handle the button click to play the video
                         },
                         modifier = Modifier
-                            .height(40.dp) // Adjust the height for a rectangular button
-                            .fillMaxWidth() // Fill the available width
+                            .height(40.dp)
+                            .fillMaxWidth()
                              // Make the button color red
                     ) {
                         Text(text = "Play", color = Color.White)
@@ -108,7 +107,6 @@ fun MoviesDetailScreen(
                         modifier = Modifier.padding(bottom = 8.dp)
                     )
                 }
-
                 if (overview != null) {
                     Text(
                         text = overview,

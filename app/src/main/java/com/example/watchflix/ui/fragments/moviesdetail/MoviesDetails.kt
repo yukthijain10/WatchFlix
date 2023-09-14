@@ -7,30 +7,20 @@ import android.view.ViewGroup
 import androidx.activity.OnBackPressedCallback
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
-import androidx.lifecycle.ViewModelProvider
-import androidx.lifecycle.lifecycleScope
 import androidx.navigation.Navigation
 import androidx.navigation.fragment.NavHostFragment
-import androidx.recyclerview.widget.LinearLayoutManager
-import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 
 import com.example.watchflix.R
 import com.example.watchflix.network.Util.Utilities.imgUrl
 import com.example.watchflix.databinding.FragmentMoviesDeatailsBinding
-import com.example.watchflix.network.Data.ResultX
-import com.example.watchflix.network.repository.mainrepointerface
-import com.example.watchflix.ui.Adapter.Popularmovies
-import com.example.watchflix.viewmodel.CustomViewModel
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.launch
-import kotlinx.coroutines.withContext
+import com.example.watchflix.viewmodel.watchFlixViewModel
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
 
 class MoviesDetails : Fragment() {
     lateinit var binding: FragmentMoviesDeatailsBinding
-    private val viewmodel by viewModel<CustomViewModel>()
+    private val viewmodel by viewModel<watchFlixViewModel>()
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?

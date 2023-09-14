@@ -10,12 +10,12 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 import com.bumptech.glide.integration.compose.ExperimentalGlideComposeApi
 import com.bumptech.glide.integration.compose.GlideImage
-import com.example.watchflix.network.Data.ResultX
+import com.example.watchflix.network.Data.popularResult
 
 
 @OptIn(ExperimentalGlideComposeApi::class)
 @Composable
-fun PopularItem(resource: ResultX, onClick: (resource :ResultX) -> Unit) {
+fun PopularItem(resource: popularResult, onClick: (resource :popularResult) -> Unit) {
     if (resource != null) {
         Box(
             modifier = Modifier

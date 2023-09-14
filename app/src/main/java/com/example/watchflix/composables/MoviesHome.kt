@@ -26,20 +26,16 @@ import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import com.example.watchflix.R
-import com.example.watchflix.network.Data.ResultX
-import com.example.watchflix.viewmodel.CustomViewModel
+import com.example.watchflix.network.Data.popularResult
+import com.example.watchflix.viewmodel.watchFlixViewModel
 import org.koin.androidx.compose.getViewModel
-
-
 @Composable
-fun HomePage(onClick:(resource : ResultX)->Unit) {
+fun HomePage(onClick:(resource : popularResult)->Unit) {
 
-    val viewModel = getViewModel<CustomViewModel>()
+    val viewModel = getViewModel<watchFlixViewModel>()
     val result = viewModel.popularlist.collectAsState().value
     val result1 = viewModel.toplist.collectAsState().value
     val result2 = viewModel.uplist.collectAsState().value
-
-
     Column(
                 modifier = Modifier
                     .fillMaxSize()
@@ -124,8 +120,6 @@ fun HomePage(onClick:(resource : ResultX)->Unit) {
                     }
 
                     item {
-                        // Top Rated Movies
-
                         Text(
                             text = "Top Rated Movies",
                             color = Color.White,
@@ -135,12 +129,11 @@ fun HomePage(onClick:(resource : ResultX)->Unit) {
                     }
 
                     item {
-                        // RecyclerView for Top Rated Movies
                         LazyRow(
                             modifier = Modifier
                                 .fillMaxWidth()
                                 .height(120.dp),
-                        ){
+                        ) {
                             val resource = result1?.body()
                             if (resource != null) {
                                 items(resource.results) {
@@ -149,8 +142,6 @@ fun HomePage(onClick:(resource : ResultX)->Unit) {
 
                             }
                         }
-
-
                     }
 
                     item {
@@ -162,9 +153,6 @@ fun HomePage(onClick:(resource : ResultX)->Unit) {
                             modifier = Modifier.padding(top = 16.dp)
                         )
                     }
-
-
-
                     item {
                         LazyRow(
                             modifier = Modifier

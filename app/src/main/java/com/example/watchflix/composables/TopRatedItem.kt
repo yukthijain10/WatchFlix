@@ -1,6 +1,5 @@
 package com.example.watchflix.composables
 
-import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.height
@@ -10,12 +9,12 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 import com.bumptech.glide.integration.compose.ExperimentalGlideComposeApi
 import com.bumptech.glide.integration.compose.GlideImage
-import com.example.watchflix.network.Data.Result
+import com.example.watchflix.network.Data.topRatedResult
 
 
 @OptIn(ExperimentalGlideComposeApi::class)
 @Composable
-fun TopRatedItem(resource: Result) {
+fun TopRatedItem(resource: topRatedResult) {
     if (resource != null) {
         Box(
             modifier = Modifier

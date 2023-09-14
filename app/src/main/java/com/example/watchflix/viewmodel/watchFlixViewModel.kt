@@ -4,12 +4,9 @@ import android.util.Log
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.watchflix.network.Data.Popular
-import com.example.watchflix.network.Data.Result
-import com.example.watchflix.network.Data.ResultX
-import com.example.watchflix.network.Data.ResultXX
 import com.example.watchflix.network.Data.Toprated
 import com.example.watchflix.network.Data.Upcoming
-import com.example.watchflix.network.repository.mainrepointerface
+import com.example.watchflix.network.repository.watchFlixRepoInterface
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
@@ -17,8 +14,8 @@ import kotlinx.coroutines.launch
 import retrofit2.Response
 import java.lang.Exception
 
-class CustomViewModel(
-    val repository: mainrepointerface
+class watchFlixViewModel(
+    val repository: watchFlixRepoInterface
 ) : ViewModel() {
     val popular = MutableStateFlow<Response<Popular>?>(null)
     val toprated = MutableStateFlow<Response<Toprated>?>(null)

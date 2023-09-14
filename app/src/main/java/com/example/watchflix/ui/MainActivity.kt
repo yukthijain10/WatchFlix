@@ -24,7 +24,6 @@ class MainActivity : AppCompatActivity() {
         }
     }
 }
-
 @Composable
 fun WatchFlix(){
     val navController = rememberNavController()

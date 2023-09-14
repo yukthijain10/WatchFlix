@@ -1,9 +1,6 @@
 package com.example.watchflix.network
 
 import com.example.watchflix.network.Data.Popular
-import com.example.watchflix.network.Data.Result
-import com.example.watchflix.network.Data.ResultX
-import com.example.watchflix.network.Data.ResultXX
 import com.example.watchflix.network.Data.Toprated
 import com.example.watchflix.network.Data.Upcoming
 import retrofit2.Response

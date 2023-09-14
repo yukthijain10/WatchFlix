@@ -7,9 +7,9 @@ import com.example.watchflix.network.Data.Toprated
 import com.example.watchflix.network.Data.Upcoming
 import retrofit2.Response
 
-class mainrepo(
+class watchFlixRepo(
     val api:ApiEndpoint
-    ) : mainrepointerface {
+    ) : watchFlixRepoInterface {
     override suspend fun getPopular(): Response<Popular> =
         api.getPopular(API_KEY)
     override suspend fun getTopRated(): Response<Toprated> =
