@@ -1,5 +1,6 @@
-package com.example.watchflix.ui.fragments.moviesdetail
 
+package com.example.watchflix.ui.fragments.moviesdetail
+/*
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -45,42 +46,43 @@ class MoviesHome : Fragment() {
             }
         }
 
-        lifecycleScope.launch() {
-            viewmodel.toplist.collect{
-                it?.let{
-                    TopratedRecycler(it)
-                }
-            }
-        }
-        lifecycleScope.launch() {
-            viewmodel.uplist.collect{
-                it?.let{
-                    UpcomingRecycler(it)
-                }
-            }
-        }
-    }
-        fun PopularRecycler(results: List<ResultX>) {
-            binding.recyclerView2.layoutManager =
-                LinearLayoutManager(context, LinearLayoutManager.HORIZONTAL, false)
-            binding.recyclerView2.adapter =  Popularmovies(results)
-        }
+//        lifecycleScope.launch() {
+//            viewmodel.toplist.collect{
+//                it?.let{
+//                    TopratedRecycler(it)
+//                }
+//            }
+//        }
+//        lifecycleScope.launch() {
+//            viewmodel.uplist.collect{
+//                it?.let{
+//                    UpcomingRecycler(it)
+//                }
+//            }
+//        }
+//    }
+//        fun PopularRecycler(results: List<ResultX>) {
+//            binding.recyclerView2.layoutManager =
+//                LinearLayoutManager(context, LinearLayoutManager.HORIZONTAL, false)
+//            binding.recyclerView2.adapter =  Popularmovies(results)
+//        }
+//
+//        fun TopratedRecycler(results: List<Result>) {
+//            binding.recyclerView.layoutManager =
+//                LinearLayoutManager(context, LinearLayoutManager.HORIZONTAL, true)
+//            binding.recyclerView.adapter = results.let { Topratedmovies(it) }
+//        }
+//
+//        fun UpcomingRecycler(results: List<ResultXX>) {
+//            binding.recyclerView3.layoutManager =
+//                LinearLayoutManager(context, LinearLayoutManager.HORIZONTAL, true)
+//            binding.recyclerView3.adapter = results.let { Upcomingmovies(it) }
+//
+//        }
+//
+//    }
+//
+//
 
-        fun TopratedRecycler(results: List<Result>) {
-            binding.recyclerView.layoutManager =
-                LinearLayoutManager(context, LinearLayoutManager.HORIZONTAL, true)
-            binding.recyclerView.adapter = results.let { Topratedmovies(it) }
-        }
 
-        fun UpcomingRecycler(results: List<ResultXX>) {
-            binding.recyclerView3.layoutManager =
-                LinearLayoutManager(context, LinearLayoutManager.HORIZONTAL, true)
-            binding.recyclerView3.adapter = results.let { Upcomingmovies(it) }
-
-        }
-
-    }
-
-
-
-
+*/

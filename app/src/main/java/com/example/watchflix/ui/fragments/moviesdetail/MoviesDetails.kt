@@ -50,15 +50,7 @@ class MoviesDetails : Fragment() {
     }
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        lifecycleScope.launch(Dispatchers.IO) {
-            viewmodel.popular.collect { popularList ->
-                if (popularList != null) {
-                    withContext(Dispatchers.Main) {
-                        PopularRecycler(popularList)
-                    }
-                }
-            }
-        }
+
         var imgUrl = imgUrl + arguments?.getString("poster")
         Glide.with(this).load(imgUrl).into(binding.img)
         binding.tenet.text = arguments?.getString("title")
@@ -70,10 +62,5 @@ class MoviesDetails : Fragment() {
             Navigation.findNavController(it).navigate(R.id.action_moviesDeatails_to_movie_Video)
         }
     }
-    fun PopularRecycler(results: List<ResultX>) {
-        binding.detailsrecy.layoutManager =
-            LinearLayoutManager(context, LinearLayoutManager.HORIZONTAL, true)
-        val recycleAdapter = results.let { Popularmovies(it) }
-        binding.detailsrecy.adapter = recycleAdapter
-    }
+
 }
