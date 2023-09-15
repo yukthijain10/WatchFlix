@@ -1,4 +1,4 @@
-package com.example.watchflix.ui
+package com.example.watchflix
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
@@ -11,7 +11,6 @@ import androidx.navigation.compose.rememberNavController
 import androidx.navigation.navArgument
 import com.example.watchflix.composables.HomePage
 import com.example.watchflix.composables.MoviesDetailScreen
-import com.example.watchflix.composables.VideoScreen
 
 
 class MainActivity : AppCompatActivity() {
@@ -54,9 +53,6 @@ fun WatchFlix(){
 
 
             MoviesDetailScreen(navController,poster,title,overview)
-        }
-        composable("MovieVideo"){
-            VideoScreen()
         }
     }
 

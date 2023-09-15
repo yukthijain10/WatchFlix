@@ -86,12 +86,12 @@ fun MoviesDetailScreen(
                 ) {
                     Button(
                         onClick = {
-                            // Handle the button click to play the video
+
                         },
                         modifier = Modifier
                             .height(40.dp)
                             .fillMaxWidth()
-                             // Make the button color red
+
                     ) {
                         Text(text = "Play", color = Color.White)
                     }
